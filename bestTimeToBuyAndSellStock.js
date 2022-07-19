@@ -21,16 +21,35 @@
 // Original Solution 
 
 /**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
+ * @param {number[]} prices
+ * @return {number}
  */
- function twoSum(nums, target) {
-    for(let i = 0; i < nums.length; i++){
-        for(let j = i+1; j <= nums.length; j++) {
-            if(nums[i] + nums[j] === target) {
-                return [i,j]
+ var maxProfit = function(prices) {
+    let bestBuy = 0
+    for(let i = 0; i < prices.length; i++) {
+        for(let j = i+1; j <= prices.length; j++) {
+            if (prices[j] - prices[i] > bestBuy) {
+                bestBuy = prices[j] - prices[i]
             }
         }
     }
+    return bestBuy
 } // Notes: not accepted because it is a brute force solution that does not perform well as size of the data grows
+
+// Accepted Refactor 
+
+var maxProfit = function(prices) {
+    let l = 0, r = 1
+    let maxProfit = 0
+    
+    while (r < prices.length) {
+        if(prices[r] - prices[l] > 0) {
+            profit = prices[r] - prices[l]
+            maxProfit = Math.max(maxProfit, profit)
+        } else {
+            l = r
+        }
+        r += 1
+    }
+    return maxProfit
+}
