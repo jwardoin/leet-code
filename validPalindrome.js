@@ -38,3 +38,19 @@ function isPalindrome(s) {
 
 // Runtime: 82 ms, faster than 86.14% of JavaScript online submissions for Valid Palindrome.
 // Memory Usage: 47.6 MB, less than 29.16% of JavaScript online submissions for Valid Palindrome.
+
+// Refactor using a string instead of an array
+
+function isPalindrome(s) {
+    let onlyChars = s.replace(/[^a-z0-9]/gi, "").toLowerCase()
+    let reverse = ""
+    for(let i = 0; i < onlyChars.length; i++) {
+        reverse += onlyChars[onlyChars.length - 1 - i]
+    }
+    return reverse === onlyChars
+}
+
+// Details
+
+// Runtime: 52 ms, faster than 99.99% of JavaScript online submissions for Valid Palindrome.
+// Memory Usage: 46.1 MB, less than 48.37% of JavaScript online submissions for Valid Palindrome.
