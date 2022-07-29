@@ -18,6 +18,19 @@
 // Input: nums = [3,3], target = 6
 // Output: [0,1]
 
+// Refactor with hash map
+
+function twoSum(nums, target) {
+    let hash = {}
+    for(let i = 0; i < nums.length; i++) {
+        let diff = target - nums[i]
+        if(diff in hash) {
+            return [[hash[diff]],i]
+        }
+        hash[nums[i]] = i
+    }
+}
+
 // Original Solution
 
 /**
